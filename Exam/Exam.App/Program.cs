@@ -21,6 +21,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Service and Repository Dependency Injection
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<Exam.App.Domain.Repositories.IUserRepository, Exam.App.Infrastructure.Database.Repositories.UserRepository>();
 
 
 
