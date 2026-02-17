@@ -43,6 +43,10 @@ public static class SeedData
         var alice = await userManager.FindByNameAsync("alice");
         var bob = await userManager.FindByNameAsync("bob");
         var charlie = await userManager.FindByNameAsync("charlie");
+        var diana = await userManager.FindByNameAsync("diana");
+        var edward = await userManager.FindByNameAsync("edward");
+        var fiona = await userManager.FindByNameAsync("fiona");
+        var george = await userManager.FindByNameAsync("george");
 
         var projects = new List<Project>
         {
@@ -65,6 +69,34 @@ public static class SeedData
             new Project { Name = "Charlie Email Service", Description = "Transactional email microservice", StartedAt = new DateTime(2024, 4, 10, 0, 0, 0, DateTimeKind.Utc), CompletedAt = new DateTime(2024, 6, 25, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Completed, UserId = charlie.Id },
             new Project { Name = "Charlie Report Generator", Description = "Automated PDF report generation", StartedAt = new DateTime(2024, 7, 1, 0, 0, 0, DateTimeKind.Utc), CompletedAt = new DateTime(2024, 9, 15, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Completed, UserId = charlie.Id },
             new Project { Name = "Charlie Old Website", Description = "Previous company website now archived", StartedAt = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc), CompletedAt = new DateTime(2023, 6, 1, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Archived, UserId = charlie.Id },
+
+            // Diana: 2 draft, 1 published, 1 completed, 1 archived
+            new Project { Name = "Diana Mobile App", Description = "Cross-platform mobile application", StartedAt = new DateTime(2025, 1, 5, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Draft, CompletedAt = null, UserId = diana!.Id },
+            new Project { Name = "Diana Design System", Description = "Component library and design tokens", StartedAt = new DateTime(2025, 2, 10, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Draft, CompletedAt = null, UserId = diana.Id },
+            new Project { Name = "Diana E-Commerce Platform", Description = "Online store with payment integration", StartedAt = new DateTime(2024, 7, 15, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Published, CompletedAt = null, UserId = diana.Id },
+            new Project { Name = "Diana Newsletter System", Description = "Automated newsletter distribution platform", StartedAt = new DateTime(2024, 2, 1, 0, 0, 0, DateTimeKind.Utc), CompletedAt = new DateTime(2024, 5, 30, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Completed, UserId = diana.Id },
+            new Project { Name = "Diana Old Blog", Description = "Previous blogging platform now retired", StartedAt = new DateTime(2023, 3, 1, 0, 0, 0, DateTimeKind.Utc), CompletedAt = new DateTime(2023, 9, 15, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Archived, UserId = diana.Id },
+
+            // Edward: 1 draft, 2 published, 0 completed, 2 archived
+            new Project { Name = "Edward IoT Gateway", Description = "IoT device management gateway", StartedAt = new DateTime(2025, 1, 20, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Draft, CompletedAt = null, UserId = edward!.Id },
+            new Project { Name = "Edward Monitoring Tool", Description = "Server health monitoring dashboard", StartedAt = new DateTime(2024, 8, 10, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Published, CompletedAt = null, UserId = edward.Id },
+            new Project { Name = "Edward CI Pipeline", Description = "Continuous integration and deployment pipeline", StartedAt = new DateTime(2024, 11, 1, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Published, CompletedAt = null, UserId = edward.Id },
+            new Project { Name = "Edward Legacy CMS", Description = "Old content management system decommissioned", StartedAt = new DateTime(2023, 2, 1, 0, 0, 0, DateTimeKind.Utc), CompletedAt = new DateTime(2023, 7, 20, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Archived, UserId = edward.Id },
+            new Project { Name = "Edward Deprecated API", Description = "V1 API replaced by newer version", StartedAt = new DateTime(2023, 4, 15, 0, 0, 0, DateTimeKind.Utc), CompletedAt = new DateTime(2023, 10, 1, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Archived, UserId = edward.Id },
+
+            // Fiona: 0 draft, 1 published, 3 completed, 1 archived
+            new Project { Name = "Fiona Search Engine", Description = "Full-text search service with Elasticsearch", StartedAt = new DateTime(2024, 9, 1, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Published, CompletedAt = null, UserId = fiona!.Id },
+            new Project { Name = "Fiona Payment Gateway", Description = "Stripe and PayPal payment integration", StartedAt = new DateTime(2024, 1, 10, 0, 0, 0, DateTimeKind.Utc), CompletedAt = new DateTime(2024, 4, 20, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Completed, UserId = fiona.Id },
+            new Project { Name = "Fiona Notification Service", Description = "Push notification microservice", StartedAt = new DateTime(2024, 3, 15, 0, 0, 0, DateTimeKind.Utc), CompletedAt = new DateTime(2024, 6, 10, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Completed, UserId = fiona.Id },
+            new Project { Name = "Fiona User Analytics", Description = "User behavior analytics platform", StartedAt = new DateTime(2024, 5, 1, 0, 0, 0, DateTimeKind.Utc), CompletedAt = new DateTime(2024, 8, 30, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Completed, UserId = fiona.Id },
+            new Project { Name = "Fiona Old Dashboard", Description = "First-generation analytics dashboard", StartedAt = new DateTime(2023, 6, 1, 0, 0, 0, DateTimeKind.Utc), CompletedAt = new DateTime(2023, 11, 15, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Archived, UserId = fiona.Id },
+
+            // George: 1 draft, 0 published, 2 completed, 2 archived
+            new Project { Name = "George Blockchain Wallet", Description = "Cryptocurrency wallet application", StartedAt = new DateTime(2025, 2, 5, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Draft, CompletedAt = null, UserId = george!.Id },
+            new Project { Name = "George Task Scheduler", Description = "Background job scheduling service", StartedAt = new DateTime(2024, 2, 15, 0, 0, 0, DateTimeKind.Utc), CompletedAt = new DateTime(2024, 5, 10, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Completed, UserId = george.Id },
+            new Project { Name = "George File Storage", Description = "Cloud file storage and sharing service", StartedAt = new DateTime(2024, 6, 1, 0, 0, 0, DateTimeKind.Utc), CompletedAt = new DateTime(2024, 9, 20, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Completed, UserId = george.Id },
+            new Project { Name = "George Legacy Intranet", Description = "Old company intranet portal", StartedAt = new DateTime(2023, 1, 15, 0, 0, 0, DateTimeKind.Utc), CompletedAt = new DateTime(2023, 5, 30, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Archived, UserId = george.Id },
+            new Project { Name = "George Retired Forum", Description = "Community forum no longer in use", StartedAt = new DateTime(2023, 4, 1, 0, 0, 0, DateTimeKind.Utc), CompletedAt = new DateTime(2023, 8, 15, 0, 0, 0, DateTimeKind.Utc), Status = ProjectStatus.Archived, UserId = george.Id },
         };
 
         context.Projects.AddRange(projects);
