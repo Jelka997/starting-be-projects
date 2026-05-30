@@ -32,6 +32,12 @@ public class ProjectRepository : IProjectRepository
             .ToListAsync();
     }
 
+    public async Task<Project?> GetProjectByUserIdAsync(int id ,string userId)
+    {
+        return await _context.Projects
+        .FirstOrDefaultAsync(p => p.Id == id && p.UserId == userId);//vracamo trazeni projekat tog usera
+    }
+
     public async Task UpdateAsync(Project project)
     {
         _context.Projects.Update(project);

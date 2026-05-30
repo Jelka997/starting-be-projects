@@ -12,12 +12,20 @@ namespace Exam.App.Controllers;
 public class ProjectController : ControllerBase
 {
     private readonly IProjectService _projectService;
+    private readonly IProjectSkillService _projectSkillService;
 
-    public ProjectController(IProjectService projectService)
+    public ProjectController(IProjectService projectService, IProjectSkillService projectSkillService)
     {
         _projectService = projectService;
+        _projectSkillService = projectSkillService;
     }
-
+    [HttpPost("{projectId}/skills/{skillId}")]
+    public async Task<IActionResult> AddSkillToProject([FromRoute]int projectId,[FromRoute] int skillId,[FromBody] ProjectSkillsDto dto)
+    {
+        dto.ProjectId = projectId;
+        dto.SkillId = skillId;
+        return Ok(await _projectSkillService.AddSkilToProject(dto));    
+    }
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] ProjectDto dto)
     {
@@ -29,14 +37,16 @@ public class ProjectController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, [FromBody] ProjectDto dto)
     {
-        var result = await _projectService.UpdateAsync(id, dto);
+        var username = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var result = await _projectService.UpdateAsync(id, dto, username);
         return Ok(result);
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        await _projectService.DeleteAsync(id);
+        var username = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        await _projectService.DeleteAsync(id, username);
         return Ok();
     }
 

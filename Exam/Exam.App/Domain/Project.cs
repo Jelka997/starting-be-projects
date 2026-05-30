@@ -1,3 +1,5 @@
+using static Exam.App.Domain.ProjectSkill;
+
 namespace Exam.App.Domain;
 
 public class Project
@@ -9,4 +11,6 @@ public class Project
     public DateTime? CompletedAt { get; set; }
     public ProjectStatus Status { get; set; }
     public string UserId { get; set; }
+    public List<ProjectSkill> ProjectSkills { get; set; } = new();
+
 }

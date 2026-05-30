@@ -6,6 +6,8 @@ using Exam.App.Infrastructure.Database.Repositories;
 using Exam.App.Services;
 using Exam.App.Services.Mappers;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,8 +18,12 @@ Startup.AddAuthenticationAndAuthorization(builder);
 
 builder.Services.AddTransient<ExceptionHandlingMiddleware>();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
-builder.Services.AddControllers();
 
+builder.Services.AddControllers()
+    .AddJsonOptions(o =>
+    {
+        o.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());//prikaz enuma kao string
+    });
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -26,7 +32,11 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+builder.Services.AddScoped<ISkillsRepository, SkillsRepository>();
+builder.Services.AddScoped<IProjectSkillRepository, ProjectSkillRepository>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
+builder.Services.AddScoped<ISkillService, SkillService>();
+builder.Services.AddScoped<IProjectSkillService, ProjectSkillService>();
 
 
 
